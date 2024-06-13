@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Личности</title>
+		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="style/input.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="text-darkBlue">
+		<header class="">
+			<div
+				class="container w-[1200px] md:w-[800px] lg:w-[1000px] xl:w-[1100px]"
+			>
+				<div class="flex items-center justify-between">
+					<a href="#" class="logo">
+						<img src="images/logo.svg" alt="logo" />
+					</a>
+					<nav class="menu font-medium">
+						<ul class="flex items-center justify-between gap-20">
+							<!-- <li class="menu__item">
+								<a
+									href="index.html"
+									class="menu__link text-[21px] hover:text-blue"
+									>Главная страница</a
+								>
+							</li> -->
+							<li class="menu__item">
+								<a
+									href="index.html"
+									class="menu__link text-[21px] hover:text-blue"
+									>История</a
+								>
+							</li>
+							<li class="menu__item">
+								<a
+									href="person.html"
+									class="menu__link text-[21px] hover:text-blue"
+									>Личности</a
+								>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<section>
+			<div class="container w-[1200px] items-center">
+				<div
+					class="event mt-[64px] border border-[#d0d4f7] shadow rounded-[20px]"
+					id="eventDetailsContainer"
+				>
+					<!-- Данные о событии будут загружены сюда -->
+				</div>
+			</div>
+		</section>
+		<script src="event.js"></script>
+	</body>
+</html>

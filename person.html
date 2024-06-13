@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Личности</title>
+		<link rel="stylesheet" href="style/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="tailwind.config.js"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						fontSize: {
+							sm: '24px',
+							base: '28px',
+							xl: '32px',
+							'2xl': '62px',
+							'3xl': '64px',
+							'4xl': '86px',
+						},
+						padding: {
+							'82px': '82px',
+							'41px': '41px',
+							'62px': '62px',
+						},
+						screens: {
+							lg: '992px',
+							md: '768px',
+							sm: '480px',
+						},
+						container: {
+							padding: '20px',
+							center: true,
+							maxWidth: {
+								'1660px': '1660px',
+							},
+						},
+						colors: {
+							white: '#FFFFFF',
+							lightWite: '#94a3b8',
+							darkBlue: '#1B2E4F',
+							blue: '#4FB4E5',
+							green: '#4AE981',
+						},
+						maxWidth: {
+							'905px': '905px',
+						},
+						width: {
+							'488px': '488px',
+							'1920px': '1920px',
+						},
+						margin: {
+							'87px': '87px',
+							'14px': '14px',
+							'23px': '23px',
+							'82px': '82px',
+							'317px': '317px',
+						},
+						gap: {
+							'80px': '80px',
+						},
+					},
+				},
+			}
+		</script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="text-darkBlue">
+		<header class="">
+			<div class="container md:w-[800px] lg:w-[1000px] xl:w-[1100px]">
+				<div class="flex items-center justify-between">
+					<a href="#" class="logo">
+						<img src="images/logo.svg" alt="logo" />
+					</a>
+					<nav class="menu font-medium">
+						<ul class="flex items-center justify-between gap-20">
+							<li class="menu__item">
+								<a href="index.html" class="menu__link text-sm hover:text-blue"
+									>История</a
+								>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<div class="main-content min-h-screen mb-20">
+			<section class="search-section text-darkBlue">
+				<div class="container">
+					<div class="flex items-center justify-center mb-[48px]">
+						<form class="flex items-center space-x-2">
+							<div class="relative">
+								<input
+									id="searchInput"
+									type="text"
+									placeholder="Поиск личности"
+									class="search border rounded-lg font-medium text-[16px] py-[10px] w-[600px] px-4"
+								/>
+								<ul
+									id="suggestions"
+									class="absolute bg-white border rounded-lg w-full mt-1 hidden max-h-48 overflow-y-auto z-5"
+								></ul>
+							</div>
+							<button
+								id="searchButton"
+								class="btn bg-white font-bold border rounded-lg py-2 px-4"
+							>
+								НАЙТИ
+							</button>
+						</form>
+					</div>
+				</div>
+			</section>
+			<section class="person-info text-darkBlue hidden">
+				<div class="container w-[1200px]">
+					<div class="person__inner flex justify-between gap-2 text-darkBlue">
+						<!-- <div class="person__img w-full">
+							<img id="personPhoto" class="hidden" alt="Person Photo" />
+						</div> -->
+						<div class="person__content max-w-[900px]">
+							<div
+								id="personFIO"
+								class="person__fio font-bold pb-[14px] text-[32px] lg: text-[24px]"
+							></div>
+							<div
+								id="personBday"
+								class="person__b-day font-bold pb-[14px] text-[24px] lg: text-[21px]"
+							></div>
+							<div
+								id="personDday"
+								class="person__dday font-bold pb-[14px] text-[24px] lg: text-[21px]"
+							></div>
+							<div
+								id="personPosition"
+								class="person__position font-bold pb-[24px] text-[24px] lg: text-[21px]"
+							></div>
+							<div
+								id="personDescription"
+								class="person__description font-medium text-[21px] lg: text-[18px]"
+							></div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="line border-t-2 mt-[64px] border-[#4AE981] w-full my-5"
+				></div>
+				<div class="container w-[1200px]">
+					<div
+						class="person__achievements mt-[57px] pb-[64px] flex justify-between gap-[5px]"
+					>
+						<div class="person__publications publications max-w-[550px]">
+							<h2
+								class="publications__title uppercase pb-[41px] font-bold text-[32px]"
+							>
+								Публикации
+							</h2>
+							<ul
+								id="publicationsList"
+								class="publications__inner font-medium text-[21px] lg: text-[18px] max-w-[450px]"
+							></ul>
+						</div>
+						<div class="person__awards awards max-w-[600px]">
+							<h2
+								class="awards__title uppercase pb-[41px] font-bold text-[32px]"
+							>
+								Награды
+							</h2>
+							<ul
+								id="awardsList"
+								class="awards__inner font-medium text-[21px] lg: text-[18px] max-w-[450px]"
+							></ul>
+						</div>
+					</div>
+				</div>
+				<!-- <div
+					class="line border-t-2 mt-[64px] border-[#4FB4E5] w-full my-5"
+				></div> -->
+				<!-- <div class="container">
+					<h2 class="awards__title uppercase pb-[41px] font-bold text-[42px]">
+						СОБЫТИЯ
+					</h2>
+
+					<div
+						id="eventsContainer"
+						class="event-block-container grid grid-cols-2 text-darkBlue uppercase"
+					></div>
+				</div> -->
+			</section>
+		</div>
+		<footer class="footer w-full bg-cover bg-repeat">
+			<div class="container">
+				<div class="footer__inner flex flex-col items-center">
+					<div class="footer__media flex gap-5 pb-41px">
+						<a href="https://vk.com/komisc">
+							<img src="images/vk.svg" alt="" />
+						</a>
+						<a href="https://t.me/komisc">
+							<img src="images/telegram.svg" alt="" />
+						</a>
+						<a href="https://www.youtube.com/channel/UChdAsMQx4mwjri8oWgyljBA">
+							<img src="images/youtube.svg" alt="" />
+						</a>
+					</div>
+					<nav class="footer-menu font-medium text-white">
+						<ul class="flex items-center justify-between pb-62px gap-80px">
+							<li class="footer-menu__item">
+								<a href="index.html" class="menu__link text-sm hover:text-blue"
+									>История</a
+								>
+							</li>
+							<li class="footer-menu__item">
+								<a href="person.html" class="menu__link text-sm hover:text-blue"
+									>Личности</a
+								>
+							</li>
+						</ul>
+					</nav>
+					<p class="text-white text-sm">© ФИЦ Коми НЦ УрО РАН, 2024</p>
+				</div>
+			</div>
+		</footer>
+		<script src="person.js"></script>
+	</body>
+</html>

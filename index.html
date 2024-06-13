@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>История КНЦ</title>
+
+		<link rel="stylesheet" href="style/input.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+		<script src="tailwind.config.js"></script>
+		<style>
+			@media (max-width: 1600px) {
+				.history__inner {
+					align-items: center;
+				}
+				.history__info {
+					width: 80%;
+				}
+				.history__txt {
+					width: 800px;
+				}
+				.history__img {
+					width: 1000px;
+				}
+
+				.range__content {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.range__event {
+					margin-left: 0;
+				}
+				.person__awards {
+					max-width: 400px;
+				}
+				.person__publications {
+					max-width: 400px;
+				}
+			}
+			@media (max-width: 1200px) {
+				.history__inner {
+					justify-content: space-between;
+					gap: 20px;
+				}
+
+				.history__info {
+					width: 50%;
+					height: 70%;
+				}
+				.history__txt {
+					width: 400px;
+				}
+				.history__img {
+					text-align: center;
+					width: 600px;
+				}
+
+				.range__content {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.range__event {
+					margin-left: 0;
+				}
+				.footer {
+				}
+
+				.person__awards {
+					max-width: 400px;
+				}
+				.person__publications {
+					max-width: 400px;
+				}
+			}
+			@media (max-width: 1300px) {
+				.history__inner {
+					justify-content: space-between;
+					gap: 20px;
+				}
+
+				.history__info {
+					width: 50%;
+					height: 70%;
+				}
+				.history__txt {
+					width: 400px;
+				}
+				.history__img {
+					text-align: center;
+					width: 600px;
+				}
+
+				.range__content {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.range__event {
+					margin-left: 0;
+				}
+				.person__awards {
+					max-width: 400px;
+				}
+				.person__publications {
+					max-width: 400px;
+				}
+			}
+
+			.hero {
+				position: relative;
+				height: 100vh;
+				background-size: cover;
+			}
+
+			.swiper {
+				width: 100vw;
+				height: 100vh;
+				z-index: 0;
+			}
+
+			.swiper-slide img {
+				width: 100vw;
+				height: 100vh;
+				object-fit: cover;
+			}
+			.swiper-pagination {
+				position: absolute;
+				bottom: 10px;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 20;
+			}
+			input[type='range'] {
+				-webkit-appearance: none;
+				width: 100%;
+				height: 8px;
+				background: #ddd;
+				outline: none;
+				opacity: 0.7;
+				transition: opacity 0.2s;
+				position: relative; /* Добавляем позиционирование */
+			}
+
+			input[type='range']::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 24px;
+				height: 24px;
+				background: #4ae981;
+				cursor: pointer;
+				border-radius: 50%;
+				position: relative; /* Добавляем позиционирование */
+				transition: all 0.3s; /* Анимация для плавного перемещения */
+			}
+
+			input[type='range']::-moz-range-thumb {
+				width: 24px;
+				height: 24px;
+				background: #4ae981;
+				cursor: pointer;
+				border-radius: 50%;
+				position: relative; /* Добавляем позиционирование */
+				transition: all 0.3s; /* Анимация для плавного перемещения */
+			}
+
+			/* Установка ползунка внизу слева */
+			input[type='range']::-webkit-slider-runnable-track {
+				margin-top: -8px; /* Выравниваем трек вверх, чтобы ползунок был внизу */
+			}
+
+			/* Установка ползунка внизу справа */
+			input[type='range']::-moz-range-track {
+				margin-top: -4px; /* Выравниваем трек вверх, чтобы ползунок был внизу */
+			}
+
+			.field {
+				display: flex;
+				align-items: center;
+			}
+
+			.left {
+				flex: 1; /* Равномерное распределение пространства */
+				text-align: left;
+			}
+
+			.right {
+				flex: 1; /* Равномерное распределение пространства */
+				text-align: right;
+			}
+
+			.range {
+				position: relative;
+				width: 50%;
+				margin-top: 20px;
+			}
+
+			.sliderValue {
+				text-align: center;
+				margin-top: 20px;
+				font-size: 24px;
+
+				color: #1b2e4f;
+			}
+		</style>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="text-white">
+		<div class="wrapper">
+			<header class="header">
+				<div class="container">
+					<div class="flex items-center justify-between">
+						<a href="#" class="logo">
+							<img src="images/logo.svg" alt="logo" />
+						</a>
+						<nav class="menu font-medium">
+							<ul class="flex items-center justify-between gap-20">
+								<li class="menu__item">
+									<a href="#" class="menu__link text-sm hover:text-blue"
+										>Главная страница</a
+									>
+								</li>
+								<li class="menu__item">
+									<a
+										href="person.html"
+										class="menu__link text-sm hover:text-blue"
+										>Личности</a
+									>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+			<section class="hero">
+				<div class="container">
+					<div class="content">
+						<div class="content__main">
+							<h2 class="text-4xl font-extrabold uppercase mb-87px">
+								История коми научного центра
+							</h2>
+							<!-- <p
+								class="text-xl font-medium mb-14px text-lightWite hover:text-blue"
+							>
+								<a href="#history">Перейти к истории КНЦ</a>
+							</p> -->
+							<p class="text-[42px] font-bold text-green hover:text-blue">
+								<a href="#event">Перейти к историческим событиям</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><img src="images/bg.jpg" alt="" /></div>
+						<div class="swiper-slide">
+							<img src="images/main_slide2.jpg" alt="" />
+						</div>
+						<div class="swiper-slide">
+							<img src="images/main_slide3.jpg" alt="" />
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</section>
+		</div>
+
+		<!-- <section class="history" id="history">
+			<h2
+				class="text-center text-2xl text-darkBlue font-extrabold mt-23px mb-82px"
+			>
+				ИСТОРИЯ КНЦ
+			</h2>
+			<div class="history__inner flex justify-between text-darkBlue">
+				<div class="history__info green">
+					<div class="history__txt">
+						<div class="font-extrabold text-2xl">1944</div>
+						<div class="font-medium text-xl pb-[14px] uppercase">
+							CОЗДАНИЕ АН ССССР
+						</div>
+						<div class="font-regular text-sm">
+							На базе эвакуированных в Сыктывкар Кольской и Северной баз АН СССР
+							была организована База АН СССР в Коми АССР. Создание Базы
+							способствовало быстрому вовлечению в хозяйственный оборот богатых
+							природных ресурсов, а также решению фундаментальных задач
+							теоретического и прикладного характера. В ее составе были два
+							отдела: геологический и биологический, а также сектор гидрологии и
+							гидробиологии. Позднее в ее состав вошли Отдел языка, письменности
+							и истории коми народа и Выльгортский плодопитомник,
+							преобразованный в Научно-экспериментальный пункт.
+						</div>
+					</div>
+				</div>
+				<div class="history__img">
+					<img class="w-full" src="images/1944.png" alt="" />
+				</div>
+			</div>
+			<div class="history__inner flex justify-between text-darkBlue">
+				<div class="history__img">
+					<img class="w-full" src="images/1958.jpg" alt="" />
+				</div>
+				<div class="history__info blue">
+					<div class="history__txt">
+						<div class="font-extrabold text-2xl">1958</div>
+						<div class="font-medium text-xl pb-[14px] uppercase">
+							Образование первого института
+						</div>
+						<div class="font-regular text-sm">
+							В 1958 г. был   образован первый институт – Институт геологии в
+							составе двух секторов, шести лабораторий и геологического музея. В
+							этом же году предложено организовать Отдел химии и Отдел
+							энергетики и водного хозяйства. В 1956-1957 гг. произошло
+							объединение экономистов филиала в Отдел экономики. В 1962 г. был
+							образован Институт биологии в составе десяти лабораторий, в 1970
+							г. создается Институт языка, литературы и истории на базе отделов
+							гуманитарного направления.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="history__inner flex justify-between text-darkBlue">
+				<div class="history__info green">
+					<div class="history__txt">
+						<div class="font-extrabold text-2xl">2018</div>
+						<div class="font-medium text-xl pb-[14px] uppercase">
+							Создание фиц
+						</div>
+						<div class="font-regular text-sm">
+							В 2018 году Коми научный центр вступил в процесс создания
+							Федерального исследовательского центра «Коми научный центр
+							Уральского отделения Российской академии наук» на базе научных
+							организаций, подведомственных ФАНО России и расположенных на
+							территории Республики Коми.  
+						</div>
+					</div>
+				</div>
+				<div class="history__img">
+					<img class="" src="images/2018.jpg" alt="" />
+				</div>
+			</div>
+			<div class="history__inner flex justify-between text-darkBlue">
+				<div class="history__img">
+					<img src="images/2022.jpg" alt="" />
+				</div>
+				<div class="history__info blue">
+					<div class="history__txt">
+						<div class="font-extrabold text-2xl">2022</div>
+						<div class="font-medium text-xl pb-[14px] uppercase">
+							Выборы директора
+						</div>
+						<div class="font-regular text-sm">
+							15 июня 2022 года член-корреспондент РАН, доктор биологических
+							наук Светлана Владимировна Дёгтева одержала победу на выборах
+							директора ФИЦ Коми НЦ УрО РАН, набрав большинство голосов
+							сотрудников Центра. Согласно Приказу  Минобрнауки России №
+							10-3/230 п-о от 5 сентября 2022 года Светлана Владимировна
+							утверждена на должность директора ФИЦ Коми НЦ УрО РАН сроком на 5
+							лет.           
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+		<section class="event text-darkBlue" id="event">
+			<div class="container">
+				<h2 class="text-center text-2xl font-extrabold mt-23px mb-82px">
+					ИСТОРИЧЕСКИЕ СОБЫТИЯ
+				</h2>
+				<div
+					class="event__departments-inner text-sm uppercase flex gap-10 justify-center pb-[30px]"
+				>
+					<!-- Кнопки отделов -->
+				</div>
+			</div>
+			<div class="range border rounded-[20px] shadow">
+				<div class="sliderValue font-bold">
+					<span id="slider-span"></span>
+				</div>
+				<div class="field p-[10px]">
+					<div
+						class="value left font-medium pr-[8px] text-[21px]"
+						id="min-year"
+					></div>
+					<input
+						type="range"
+						min=""
+						max=""
+						value=""
+						step="1"
+						id="year-range-slider"
+					/>
+					<div
+						class="value right font-medium pl-[8px] text-[21px]"
+						id="max-year"
+					></div>
+				</div>
+				<div class="sliderValue">
+					<span id="slider-span"></span>
+				</div>
+				<div class="instructions font-medium text-[18px] mt-[10px] p-[10px]">
+					Перемещайте ползунок, чтобы выбрать временной промежуток.
+				</div>
+			</div>
+			<div class="container">
+				<div
+					id="eventsContainer"
+					class="event-block-container grid grid-cols-2 text-darkBlue uppercase"
+				>
+					<!-- Отфильтрованные события  -->
+				</div>
+			</div>
+		</section>
+		<!-- модальное окно -->
+		<div
+			class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+			id="modal"
+		>
+			<div
+				class="bg-white p-8 rounded-lg w-[1000px] shadow-lg text-black w-1/3 relative z-60"
+			>
+				<div class="flex justify-end m-2">
+					<button class="text-2xl leading-none" onclick="toggleModal()">
+						&times;
+					</button>
+				</div>
+
+				<div id="modal-content" class="text-darkBlue p-[20px]"></div>
+			</div>
+		</div>
+		<footer class="footer w-full bg-cover bg-repeat">
+			<div class="container">
+				<div class="footer__inner flex flex-col items-center">
+					<div class="footer__media flex gap-5 pb-41px">
+						<a href="https://vk.com/komisc"
+							><img src="images/vk.svg" alt="" />
+						</a>
+						<a href="https://t.me/komisc"
+							><img src="images/telegram.svg" alt="" />
+						</a>
+						<a href="https://www.youtube.com/channel/UChdAsMQx4mwjri8oWgyljBA"
+							><img src="images/youtube.svg" alt="" />
+						</a>
+					</div>
+					<nav class="footer-menu font-medium text-white">
+						<ul class="flex items-center justify-between pb-62px gap-80px">
+							<li class="footer-menu__item">
+								<a href="index.html" class="menu__link text-sm hover:text-blue"
+									>История</a
+								>
+							</li>
+							<li class="footer-menu__item">
+								<a href="person.html" class="menu__link text-sm hover:text-blue"
+									>Личности</a
+								>
+							</li>
+						</ul>
+					</nav>
+					<p class="text-white text-sm">© ФИЦ Коми НЦ УрО РАН, 2024</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+		<script src="main.js"></script>
+		<script src="data.js"></script>
+	</body>
+</html>
